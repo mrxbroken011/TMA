@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, Column, TEXT, Numeric
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-DATABASE_URL = "postgresql+psycopg2://sgpostgres:PtU2-lwHUx5BMM8X@SG-brokenx-63530.servers.mongodirector.com/brokenx"
+DATABASE_URL = "postgresql://sgpostgres:PtU2-lwHUx5BMM8X@SG-brokenx-63530.servers.mongodirector.com/brokenx"
 
 def start() -> scoped_session:
     engine = create_engine(DATABASE_URL, client_encoding="utf8")
