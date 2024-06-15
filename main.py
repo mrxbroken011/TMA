@@ -152,7 +152,7 @@ async def button(app, update):
 
    elif "Remove" in k:
       if update.message.chat.id not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**ʏᴏᴜ ᴀʀᴇ ɴᴏ ʟᴏɴɢᴇʀ ᴀ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ\nᴘʟᴇᴀsᴇ ʜᴀᴠᴇ ᴀ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 150ʀs\nᴘᴇʀ ᴍᴏɴᴛʜ\nɪғ ʏᴏᴜ ɪɴᴛʀᴇsᴛᴇᴅ ᴛʜᴀɴ ᴄᴏɴᴛᴀᴄᴛ ~ @iam_daxx**")
+         await app.send_message(update.message.chat.id, f"**sᴜʙsᴄʀɪᴘᴛɪᴏɴ ᴄʜᴀɪʏᴇ ᴛᴏʜ ᴏᴡɴᴇʀ ᴋᴏ ᴄᴏɴᴛᴀᴄᴛ ᴋʀᴏ**")
          return
       try:
          with open(f"Users/{update.message.chat.id}/phone.csv", 'r')as f:
