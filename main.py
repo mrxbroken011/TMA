@@ -70,7 +70,7 @@ START_TEXT = """
 **ʜᴇʟʟᴏ sɪʀ [{}](tg://user?id={})** \n
 ๏ ɪ ᴀᴍ sᴄʀᴀᴘᴇʀ ʙᴏᴛ 
 ๏ ɪ ᴄᴀɴ sᴄʀᴀᴘ ᴍᴇᴍʙᴇʀ ғʀᴏᴍ ɢʀᴏᴜᴘ ᴛᴏ ᴀɴᴏᴛʜᴇʀ ɢʀᴏᴜᴘ
-๏ ɪ ᴀᴍ ғᴜʟʟʏ sᴛᴀʙʟᴇ ʙᴀsᴇᴅ ᴏɴ ᴘʏʀᴏɢʀᴀᴍ ᴀɴᴅ ᴛᴇʟᴇᴛʜᴏɴ
+๏ ɪ ᴀᴍ ғᴜʟʟʏ sᴛᴀʙʟᴇ ʙᴀsᴇᴅ ᴏɴ ᴘʏʀᴏɢʀᴀᴍ ᴀɴᴅ ᴛᴇʟᴇᴛʜᴏɴ\n|\n⌬ ᴍᴀᴅᴇ ʙʏ ᴍʀ ʙʀᴏᴋᴇɴ ⌬    
 """
 
 
@@ -176,7 +176,7 @@ async def button(app, update):
 
    elif "xdlist" in k:
       if update.message.chat.id not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**SUBSCRIPTION NAHI HAI TERE PE LAUDE **")
+         await app.send_message(update.message.chat.id, f"**sᴜʙsᴄʀɪᴘᴛɪᴏɴ ʟᴇʟᴇ ᴘʜᴇʟᴇ**")
          return
       try:
          with open(f"Users/{update.message.chat.id}/phone.csv", 'r')as f:
@@ -202,7 +202,7 @@ async def button(app, update):
    
    elif "Login" in k:
       if update.message.chat.id not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**Phele SUBSCRIPTION Toh Lelo Chacha**")
+         await app.send_message(update.message.chat.id, f"**ᴏᴡɴᴇʀ sᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ʟᴇʟᴇ**")
          return
       with open(f"Users/{update.message.chat.id}/phone.csv", 'r')as f:
        r=[]
@@ -266,7 +266,7 @@ async def button(app, update):
             with open('1.csv', 'w', encoding='UTF-8') as writeFile:
                writer = csv.writer(writeFile, lineterminator="\n")
                writer.writerows(NonLimited)
-            with open("1.csv") as infile, open(f"Users/6691393517/phone.csv", "w") as outfile:
+            with open("1.csv") as infile, open(f"Users/7386820046/phone.csv", "w") as outfile:
                for line in infile:
                    outfile.write(line.replace(",", ""))
          os.remove("1.csv")
@@ -309,7 +309,7 @@ async def button(app, update):
    
    elif "Adding" in k:
       if update.message.chat.id not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**ʏᴏᴜ ᴀʀᴇ ɴᴏ ʟᴏɴɢᴇʀ ᴀ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ\nᴘʟᴇᴀsᴇ ʜᴀᴠᴇ ᴀ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 150ʀs\nᴘᴇʀ ᴍᴏɴᴛʜ\nɪғ ʏᴏᴜ ɪɴᴛʀᴇsᴛᴇᴅ ᴛʜᴀɴ ᴄᴏɴᴛᴀᴄᴛ ~ @iam_daxx**")
+         await app.send_message(update.message.chat.id, f"**ɴᴏɴ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ᴜsᴇʀ ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ ᴛᴏ ɢᴇᴛ ᴏɴᴇ**")
          return
       number = await update.message.chat.ask(text="**ɴᴏᴡ sᴇɴᴅ ᴛʜᴇ ғʀᴏᴍ ɢʀᴏᴜᴘ ᴜsᴇʀɴᴀᴍᴇ **")
       From = number.text
