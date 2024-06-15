@@ -107,7 +107,7 @@ async def button(app, update):
    k = update.data
    if "Phone" in k:      
       if update.message.chat.id  not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**ʏᴏᴜ ᴀʀᴇ ɴᴏ ʟᴏɴɢᴇʀ ᴀ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ\nᴘʟᴇᴀsᴇ ʜᴀᴠᴇ ᴀ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 150ʀs\nᴘᴇʀ ᴍᴏɴᴛʜ\nɪғ ʏᴏᴜ ɪɴᴛʀᴇsᴛᴇᴅ ᴛʜᴀɴ ᴄᴏɴᴛᴀᴄᴛ ~ @iam_daxx**")
+         await app.send_message(update.message.chat.id, f"**ᴘᴀɪsᴀ ʟᴀʏᴀ ʜᴀɪ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ʜᴀɪ ᴛᴇʀᴇ ᴘᴀss**")
          return
       if not os.path.exists(f"Users/{update.message.chat.id}/phone.csv"):
          os.mkdir(f'./Users/{update.message.chat.id}')
