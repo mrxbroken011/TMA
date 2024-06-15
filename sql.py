@@ -1,21 +1,18 @@
-import os
 import threading
-from sqlalchemy import create_engine
-from sqlalchemy import Column, TEXT, Numeric
+from sqlalchemy import create_engine, Column, TEXT, Numeric
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
+DATABASE_URL = "postgresql+psycopg2://sgpostgres:PtU2-lwHUx5BMM8X@SG-brokenx-63530.servers.mongodirector.com/brokenx"
+
 def start() -> scoped_session:
-    engine = create_engine("SG-brokenx-63530.servers.mongodirector.com", client_encoding="utf8")
+    engine = create_engine(DATABASE_URL, client_encoding="utf8")
     BASE.metadata.bind = engine
     BASE.metadata.create_all(engine)
     return scoped_session(sessionmaker(bind=engine, autoflush=False))
 
-
 BASE = declarative_base()
 SESSION = start()
-
-INSERTION_LOCK = threading.RLock()
 
 class Broadcast(BASE):
     __tablename__ = "broadcast"
@@ -26,23 +23,16 @@ class Broadcast(BASE):
         self.id = id
         self.user_name = user_name
 
-Broadcast.__table__.create(checkfirst=True)
-
-
-# ------------------------------------ Add user details ----------------------------- #
-async def add_user(id, user_name):
-    with INSERTION_LOCK:
-        msg = SESSION.query(Broadcast).get(id)
+# Use session context manager for safe session handling
+def add_user(id, user_name):
+    with SESSION() as session:
+        msg = session.query(Broadcast).get(id)
         if not msg:
             usr = Broadcast(id, user_name)
-            SESSION.add(usr)
-            SESSION.commit()
-        else:
-            pass
+            session.add(usr)
+            session.commit()
 
-async def query_msg():
-    try:
-        query = SESSION.query(Broadcast.id).order_by(Broadcast.id)
+def query_msg():
+    with SESSION() as session:
+        query = session.query(Broadcast.id).order_by(Broadcast.id).all()
         return query
-    finally:
-        SESSION.close()
