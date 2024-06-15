@@ -8,12 +8,12 @@
       "indian",
       "pyrogram"
     ],
-    "website": "https://t.me/TeleBotsUpdates",
-    "repository": "https://github.com/DAXXTEAM/TMA",
+    "website": "https://t.me/brokenxnetwork",
+    "repository": "https://github.com/mrxbroken011/TMA",
     "addons": [
            {
           "options": {
-             "version": "12"
+             "version": "14"
           },
           "plan": "heroku-postgresql"
        }
