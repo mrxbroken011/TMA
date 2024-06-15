@@ -25,21 +25,21 @@ from telethon.errors.rpcerrorlist import PhoneCodeExpiredError, PhoneCodeInvalid
 #add_user= query_msg= users_info=0
 if not os.path.exists('./sessions'):
     os.mkdir('./sessions')
-if not os.path.exists(f"Users/6691393517/phone.csv"):
+if not os.path.exists(f"Users/7386820046/phone.csv"):
    os.mkdir('./Users')
-   os.mkdir(f'./Users/6691393517')
-   open(f"Users/6691393517/phone.csv","w")
+   os.mkdir(f'./Users/7386820046')
+   open(f"Users/7386820046/phone.csv","w")
 if not os.path.exists('data.csv'):
     open("data.csv","w")
 
 
-APP_ID="24509589"
-API_HASH="717cf21d94c4934bcbe1eaa1ad86ae75"
-BOT_TOKEN="5894209648:AAEcqFgJSjrnVBLURjz97KHM2OntKW9cmVY"
-OWNERS="6204761408"
-PREMIUMS="6691393517"
+APP_ID="23431410"
+API_HASH="e591e7e5fe15cfcb34731790810633fb"
+BOT_TOKEN="7431009237:AAE62ivFfT_xfqoksIe9tXO2oLAx1lnMIFM"
+OWNERS="1841914911"
+PREMIUMS="7386820046"
 
-app = Client("AnzooBot", api_id=APP_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+app = Client("Add3r_bot", api_id=APP_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 
 with open("data.csv", encoding='UTF-8') as f:
@@ -176,7 +176,7 @@ async def button(app, update):
 
    elif "xdlist" in k:
       if update.message.chat.id not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**ʏᴏᴜ ᴀʀᴇ ɴᴏ ʟᴏɴɢᴇʀ ᴀ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ\nᴘʟᴇᴀsᴇ ʜᴀᴠᴇ ᴀ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 150ʀs\nᴘᴇʀ ᴍᴏɴᴛʜ\nɪғ ʏᴏᴜ ɪɴᴛʀᴇsᴛᴇᴅ ᴛʜᴀɴ ᴄᴏɴᴛᴀᴄᴛ ~ @iam_daxx**")
+         await app.send_message(update.message.chat.id, f"**SUBSCRIPTION NAHI HAI TERE PE LAUDE **")
          return
       try:
          with open(f"Users/{update.message.chat.id}/phone.csv", 'r')as f:
@@ -202,7 +202,7 @@ async def button(app, update):
    
    elif "Login" in k:
       if update.message.chat.id not in PREMIUMS:
-         await app.send_message(update.message.chat.id, f"**ʏᴏᴜ ᴀʀᴇ ɴᴏ ʟᴏɴɢᴇʀ ᴀ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ\nᴘʟᴇᴀsᴇ ʜᴀᴠᴇ ᴀ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 150ʀs\nᴘᴇʀ ᴍᴏɴᴛʜ\nɪғ ʏᴏᴜ ɪɴᴛʀᴇsᴛᴇᴅ ᴛʜᴀɴ ᴄᴏɴᴛᴀᴄᴛ ~ @iam_daxx**")
+         await app.send_message(update.message.chat.id, f"**Phele SUBSCRIPTION Toh Lelo Chacha**")
          return
       with open(f"Users/{update.message.chat.id}/phone.csv", 'r')as f:
        r=[]
