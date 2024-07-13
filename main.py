@@ -33,7 +33,7 @@ if not os.path.exists('data.csv'):
     open("data.csv","w")
 
 
-APP_ID="23431410"
+API_ID="23431410"
 API_HASH="e591e7e5fe15cfcb34731790810633fb"
 BOT_TOKEN="7431009237:AAE62ivFfT_xfqoksIe9tXO2oLAx1lnMIFM"
 OWNERS="1841914911"
