@@ -1,38 +1,37 @@
 import threading
-from sqlalchemy import create_engine, Column, TEXT, Numeric
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
+from mongoengine import *
 
+# Connect to MongoDB
+connect(db='', host='')
 
+# Define the Document structure using MongoEngine
+class Broadcast(Document):
+    id = IntField(primary_key=True)
+    user_name = StringField()
 
-def start() -> scoped_session:
-    engine = create_engine("", client_encoding="utf8")
-    BASE.metadata.bind = engine
-    BASE.metadata.create_all(engine)
-    return scoped_session(sessionmaker(bind=engine, autoflush=False))
+    meta = {'collection': 'broadcast'}
 
-BASE = declarative_base()
-SESSION = start()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-class Broadcast(BASE):
-    __tablename__ = "broadcast"
-    id = Column(Numeric, primary_key=True)
-    user_name = Column(TEXT)
-
-    def __init__(self, id, user_name):
-        self.id = id
-        self.user_name = user_name
-
-# Use session context manager for safe session handling
+# Function to add a user to the collection
 def add_user(id, user_name):
-    with SESSION() as session:
-        msg = session.query(Broadcast).get(id)
-        if not msg:
-            usr = Broadcast(id, user_name)
-            session.add(usr)
-            session.commit()
+    try:
+        if not Broadcast.objects(id=id):
+            Broadcast(id=id, user_name=user_name).save()
+    except ValidationError as e:
+        print(f"Error saving user: {e}")
 
+# Function to query all user IDs
 def query_msg():
-    with SESSION() as session:
-        query = session.query(Broadcast.id).order_by(Broadcast.id).all()
-        return query
+    return list(Broadcast.objects.only('id').order_by('id'))
+
+# Example usage
+if __name__ == "__main__":
+    # Add a user
+    add_user(1, "Alice")
+    
+    # Query messages
+    messages = query_msg()
+    for msg in messages:
+        print(msg)
