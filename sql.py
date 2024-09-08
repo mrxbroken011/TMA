@@ -1,37 +1,48 @@
+import os
 import threading
-from mongoengine import *
+from sqlalchemy import create_engine
+from sqlalchemy import Column, TEXT, Numeric
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, scoped_session
 
-# Connect to MongoDB
-connect(db='', host='')
+def start() -> scoped_session:
+    engine = create_engine("xyz/users.db", client_encoding="utf8")
+    BASE.metadata.bind = engine
+    BASE.metadata.create_all(engine)
+    return scoped_session(sessionmaker(bind=engine, autoflush=False))
 
-# Define the Document structure using MongoEngine
-class Broadcast(Document):
-    id = IntField(primary_key=True)
-    user_name = StringField()
 
-    meta = {'collection': 'broadcast'}
+BASE = declarative_base()
+SESSION = start()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+INSERTION_LOCK = threading.RLock()
 
-# Function to add a user to the collection
-def add_user(id, user_name):
+class Broadcast(BASE):
+    __tablename__ = "broadcast"
+    id = Column(Numeric, primary_key=True)
+    user_name = Column(TEXT)
+
+    def __init__(self, id, user_name):
+        self.id = id
+        self.user_name = user_name
+
+Broadcast.__table__.create(checkfirst=True)
+
+
+# ------------------------------------ Add user details ----------------------------- #
+async def add_user(id, user_name):
+    with INSERTION_LOCK:
+        msg = SESSION.query(Broadcast).get(id)
+        if not msg:
+            usr = Broadcast(id, user_name)
+            SESSION.add(usr)
+            SESSION.commit()
+        else:
+            pass
+
+async def query_msg():
     try:
-        if not Broadcast.objects(id=id):
-            Broadcast(id=id, user_name=user_name).save()
-    except ValidationError as e:
-        print(f"Error saving user: {e}")
-
-# Function to query all user IDs
-def query_msg():
-    return list(Broadcast.objects.only('id').order_by('id'))
-
-# Example usage
-if __name__ == "__main__":
-    # Add a user
-    add_user(1, "Alice")
-    
-    # Query messages
-    messages = query_msg()
-    for msg in messages:
-        print(msg)
+        query = SESSION.query(Broadcast.id).order_by(Broadcast.id)
+        return query
+    finally:
+        SESSION.close()
