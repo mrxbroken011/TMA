@@ -11,12 +11,12 @@ def is_enabled(value, default):
     else:
         return default
 
-# ----------------ʜᴇʀᴇ-ᴄᴏɴғɪɢ------------------#
+# ----------------CONFIG------------------#
 
 API_ID = int(environ['API_ID'])
 API_HASH = environ['API_HASH']
 BOT_TOKEN = environ['BOT_TOKEN']
 OWNER_IDS = list(map(int, getenv("OWNER_IDS", "1841914911").split()))
-PREMIUM_IDS = list(map(int, getenv("PREMIUM_IDS", "1841914911 6746345687").split()))
+PREMIUM_IDS = list(map(int, getenv("PREMIUM_IDS", "1841914911").split())) #use space `123456789` `123456789`
 
-# ----------------ᴄᴏɴғɪɢ-ᴇɴᴅ------------------#
+# ----------------/@BROKENXNETWORK/------------------#
